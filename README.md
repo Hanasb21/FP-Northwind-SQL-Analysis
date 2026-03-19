@@ -48,7 +48,7 @@ limit 5;
 
 **💡 Insight:** 
 
-High-revenue products such as **Côte de Blaye dominate** overall earnings, indicating that a small number of products contribute significantly to total revenue.
+**Côte de Blaye** is the primary revenue driver, contributing significantly more than other products. High-tier pricing in the *Beverages* and *Meat/Poultry* categories suggests these are the company's most profitable segments.
 
 ### 2. 📦 Top 5 Products by Sales Volume
 **Question:** Which products are the most frequently sold in terms of quantity?
@@ -196,7 +196,7 @@ limit 5;
 |Andrew Fuller|96|
 
 **💡 Insight:** 
-Margaret Peacock is the most productive employee. Understanding her sales tactics could help in training other staff members to reach similar targets.
+Margaret Peacock is the most productive employee. Understanding her sales tactics could help in training other staff members to reach similar targets. 
 
 ### 6. 📈 Monthly Revenue Trend (1997)
 **Question:** How did the revenue fluctuate throughout the year 1997?
@@ -336,7 +336,7 @@ Scones and Sirop d'érable are frequently paired. This is a perfect opportunity 
 Through this SQL analysis, we can identified key revenue drivers, seasonal trends, and purchasing patterns. The insights gained from Product Affinity and Customer Segmentation provide a solid foundation for data-driven decision-making in inventory management and marketing strategies.
 
 ## 🛠️ Tech Stack & Tools
-- **Database:** PostgreSQL/MySQL (Adjust based on your DBeaver connection)
+- **Database:** PostgreSQL
 - **Analytical Tool:** DBeaver
 - **Documentation:** Markdown & GitHub
 
