@@ -15,18 +15,24 @@ The database consists of 13 tables with complex relationships. Understanding the
   <summary>🔍 SQL Query</summary>
 
 ```sql
-SELECT 
-p.product_name,
-c.category_name,
-SUM(od.quantity * od.unit_price * (1 - od.discount)) AS total_revenue
-FROM order_details od
-JOIN products p
-ON od.product_id = p.product_id
-JOIN categories c
-ON p.category_id = c.category_id
-GROUP BY p.product_name, c.category_name
-ORDER BY total_revenue DESC
-LIMIT 5;
+select
+	p.product_name,
+	c.category_name,
+	SUM(od.quantity * od.unit_price * (1 - od.discount)) as total_revenue
+from
+	order_details od
+join products p
+on
+	od.product_id = p.product_id
+join categories c
+on
+	p.category_id = c.category_id
+group by
+	p.product_name,
+	c.category_name
+order by
+	total_revenue desc
+limit 5;
 ```
 
 </details>
@@ -50,18 +56,24 @@ Côte de Blaye is the superstar product, generating nearly double the revenue of
   <summary>🔍 SQL Query</summary>
   
 ```sql
-SELECT 
-p.product_name,
-c.category_name,
-SUM(od.quantity) AS total_quantity_sold
-FROM order_details od
-JOIN products p
-ON od.product_id = p.product_id
-JOIN categories c
-ON p.category_id = c.category_id
-GROUP BY p.product_name, c.category_name
-ORDER BY total_quantity_sold DESC
-LIMIT 5;
+select
+	p.product_name,
+	c.category_name,
+	SUM(od.quantity) as total_quantity_sold
+from
+	order_details od
+join products p
+on
+	od.product_id = p.product_id
+join categories c
+on
+	p.category_id = c.category_id
+group by
+	p.product_name,
+	c.category_name
+order by
+	total_quantity_sold desc
+limit 5;
 ```
 </details>
 
@@ -84,17 +96,22 @@ The Dairy Products category dominates the sales volume, with Camembert Pierrot b
   <summary>🔍 SQL Query</summary>
 
 ```sql
-SELECT 
-c.company_name,
-SUM(od.quantity * od.unit_price * (1 - od.discount)) AS total_revenue
-FROM customers c
-JOIN orders o
-ON c.customer_id = o.customer_id
-JOIN order_details od
-ON o.order_id = od.order_id
-GROUP BY c.company_name
-ORDER BY total_revenue DESC
-LIMIT 5;
+select
+	c.company_name,
+	SUM(od.quantity * od.unit_price * (1 - od.discount)) as total_revenue
+from
+	customers c
+join orders o
+on
+	c.customer_id = o.customer_id
+join order_details od
+on
+	o.order_id = od.order_id
+group by
+	c.company_name
+order by
+	total_revenue desc
+limit 5;
 ```
 </details>
 
@@ -117,13 +134,16 @@ The top 3 customers contribute significantly (over $100k each). Maintaining a lo
   <summary>🔍 SQL Query</summary>
 
 ```sql
-SELECT 
-country,
-COUNT(customer_id) AS total_customers
-FROM customers
-GROUP BY country
-ORDER BY total_customers DESC
-LIMIT 5;
+select
+	country,
+	COUNT(customer_id) as total_customers
+from
+	customers
+group by
+	country
+order by
+	total_customers desc
+limit 5;
 ```
 </details>
 
@@ -138,3 +158,169 @@ LIMIT 5;
 
 **💡 Insight:** 
 The **USA, France, and Germany** are our primary markets. Marketing campaigns should be localized for these regions to maximize engagement.
+
+### 5. 🎖️ Employee Performance
+**Question:** Which employees handle the highest volume of orders?
+
+<details>
+  <summary>🔍 SQL Query</summary>
+
+```sql
+select
+	e.first_name || ' ' || e.last_name as employee_name,
+	COUNT(o.order_id) as total_orders
+from
+	employees e
+join orders o
+on
+	e.employee_id = o.employee_id
+group by
+	employee_name
+order by
+	total_orders desc
+limit 5;
+```
+</details>
+
+**Output:**
+|employee_name|total_orders|
+|-------------|------------|
+|Margaret Peacock|156|
+|Janet Leverling|127|
+|Nancy Davolio|123|
+|Laura Callahan|104|
+|Andrew Fuller|96|
+
+**💡 Insight:** 
+Margaret Peacock is the most productive employee. Understanding her sales tactics could help in training other staff members to reach similar targets.
+
+### 6. 📈 Monthly Revenue Trend (1997)
+**Question:** How did the revenue fluctuate throughout the year 1997?
+
+<details>
+  <summary>🔍 SQL Query</summary>
+
+```sql
+select
+	extract(month from o.order_date) as month,
+	SUM(od.quantity * od.unit_price * (1 - od.discount)) as monthly_revenue
+from
+	orders o
+join order_details od
+on
+	o.order_id = od.order_id
+where
+	extract(year from o.order_date) = 1997
+group by
+	month
+order by
+	month;
+```
+
+</details>
+
+**Output:**
+|month|monthly_revenue|
+|-----|---------------|
+|1.0|61258.07|
+|2.0|38483.63|
+|3.0|38547.22|
+|4.0|53032.95|
+|5.0|53781.29|
+|6.0|36362.80|
+|7.0|51020.86|
+|8.0|47287.67|
+|9.0|55629.24|
+|10.0|66749.22|
+|11.0|43533.81|
+|12.0|71398.43|
+
+**💡 Insight:** 
+Revenue peaked in October and December, likely due to seasonal demand. There is a noticeable dip in June; further investigation into seasonal promotions during mid-year is recommended.
+
+### 7. 🏷️ Discount Impact Analysis
+**Question:** Does offering discounts significantly increase the volume of goods sold?
+
+<details>
+  <summary>🔍 SQL Query</summary>
+
+```sql
+select
+	p1.product_name as product_1,
+	p2.product_name as product_2,
+	COUNT(*) as times_bought_together
+from
+	order_details od1
+join order_details od2 
+    on
+	od1.order_id = od2.order_id
+	and od1.product_id < od2.product_id
+join products p1 
+    on
+	od1.product_id = p1.product_id
+join products p2 
+    on
+	od2.product_id = p2.product_id
+group by
+	p1.product_name,
+	p2.product_name
+order by
+	times_bought_together desc
+limit 5;
+```
+
+</details>
+
+**Output:**
+|discount_status|total_quantity|
+|---------------|--------------|
+|Non-Discounted|28599|
+|Discounted|22718|
+
+**💡 Insight:** 
+Surprisingly, the volume of non-discounted items is higher. This suggests that Northwind customers may be less price-sensitive or that certain core products are frequently bought regardless of promotions.
+
+### 8. 🤝 Product Affinity (Market Basket Analysis)
+**Question:** Which products are frequently bought together?
+
+<details>
+  <summary>🔍 SQL Query</summary>
+
+```sql
+select
+	p1.product_name as product_1,
+	p2.product_name as product_2,
+	COUNT(*) as times_bought_together
+from
+	order_details od1
+join order_details od2 
+    on
+	od1.order_id = od2.order_id
+	and od1.product_id < od2.product_id
+join products p1 
+    on
+	od1.product_id = p1.product_id
+join products p2 
+    on
+	od2.product_id = p2.product_id
+group by
+	p1.product_name,
+	p2.product_name
+order by
+	times_bought_together desc
+limit 5;
+```
+
+</details>
+
+**Output:**
+|product_1|product_2|times_bought_together|
+|---------|---------|---------------------|
+|Sir Rodney's Scones|Sirop d'érable|8|
+|Pavlova|Gorgonzola Telino|7|
+|Pavlova|Tarte au sucre|6|
+|Camembert Pierrot|Flotemysost|6|
+|Gorgonzola Telino|Mozzarella di Giovanni|6|
+
+**💡 Insight:** 
+Scones and Sirop d'érable are frequently paired. This is a perfect opportunity for cross-selling or creating "Bundle Deals" to increase the Average Order Value (AOV).
