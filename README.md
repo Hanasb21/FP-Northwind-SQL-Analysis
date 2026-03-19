@@ -5,9 +5,9 @@ The **Northwind** dataset is a sample database that represents a fictional speci
 
 ## 🗺️ Entity-Relationship Diagram (ERD)
 The database consists of 13 tables with complex relationships. Understanding these connections is crucial for performing deep-dive joins.
-![Entity Relationship Diagram](./images/ER%20Diagram.png)
+![Entity Relationship Diagram](./images/ER-Diagram.png)
 
-## 🚀 Business Analysis & Insights
+## 🚀 Business Analysis
 ### 1. 💰 Top 5 Products by Revenue
 **Question:** Which products generate the highest financial contribution to the company?
 
@@ -331,3 +331,19 @@ limit 5;
 **💡 Insight:** 
 
 Scones and Sirop d'érable are frequently paired. This is a perfect opportunity for cross-selling or creating "Bundle Deals" to increase the Average Order Value (AOV).
+
+## 🏁 Conclusion
+Through this SQL analysis, we can identified key revenue drivers, seasonal trends, and purchasing patterns. The insights gained from Product Affinity and Customer Segmentation provide a solid foundation for data-driven decision-making in inventory management and marketing strategies.
+
+## 🛠️ Tech Stack & Tools
+- **Database:** PostgreSQL/MySQL (Adjust based on your DBeaver connection)
+- **Analytical Tool:** DBeaver
+- **Documentation:** Markdown & GitHub
+
+## SQL skills Demonstrated
+- JOIN
+- GROUP BY
+- Aggregation (SUM, COUNT)
+- CASE WHEN
+- Date Functions
+- Multi-table Analysis
