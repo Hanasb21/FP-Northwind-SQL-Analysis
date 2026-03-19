@@ -5,7 +5,7 @@ The **Northwind** dataset is a sample database that represents a fictional speci
 
 ## 🗺️ Entity-Relationship Diagram (ERD)
 The database consists of 13 tables with complex relationships. Understanding these connections is crucial for performing deep-dive joins.
-![Entity Relationship Diagram](./images/ER-Diagram.png)
+![Entity-Relationship-Diagram](./images/ER-Diagram.png)
 
 ## 🚀 Business Analysis
 ### 1. 💰 Top 5 Products by Revenue
