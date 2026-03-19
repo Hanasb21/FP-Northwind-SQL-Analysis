@@ -47,7 +47,8 @@ limit 5;
 |Camembert Pierrot|Dairy Products|46825.48|
 
 **💡 Insight:** 
-Côte de Blaye is the superstar product, generating nearly double the revenue of the second-ranked item. Focus on maintaining stock for high-value categories like Beverages and Meat.
+
+High-revenue products such as **Côte de Blaye dominate** overall earnings, indicating that a small number of products contribute significantly to total revenue.
 
 ### 2. 📦 Top 5 Products by Sales Volume
 **Question:** Which products are the most frequently sold in terms of quantity?
@@ -87,7 +88,8 @@ limit 5;
 |Pavlova|Confections|1158|
 
 **💡 Insight:** 
-The Dairy Products category dominates the sales volume, with Camembert Pierrot being the most popular item. High turnover in this category suggests a stable daily demand, making these products essential for maintaining consistent operational cash flow.
+
+Products like **Camembert Pierrot** and **Raclette Courdavault** are sold in large quantities, showing that high-volume products are not always the highest revenue generators.
 
 ### 3. 👥 Top 5 Customers by Revenue
 **Question:** Who are our most valuable clients (VVIP)?
@@ -125,6 +127,7 @@ limit 5;
 |Hungry Owl All-Night Grocers|49979.90|
 
 **💡 Insight:** 
+
 The top 3 customers contribute significantly (over $100k each). Maintaining a loyalty program for these "High Spender" accounts is vital for revenue stability.
 
 ### 4. 🌍 Customer Geographic Distribution
@@ -157,6 +160,7 @@ limit 5;
 |UK|7|
 
 **💡 Insight:** 
+
 The **USA, France, and Germany** are our primary markets. Marketing campaigns should be localized for these regions to maximize engagement.
 
 ### 5. 🎖️ Employee Performance
@@ -236,6 +240,7 @@ order by
 |12.0|71398.43|
 
 **💡 Insight:** 
+
 Revenue peaked in October and December, likely due to seasonal demand. There is a noticeable dip in June; further investigation into seasonal promotions during mid-year is recommended.
 
 ### 7. 🏷️ Discount Impact Analysis
@@ -278,6 +283,7 @@ limit 5;
 |Discounted|22718|
 
 **💡 Insight:** 
+
 Surprisingly, the volume of non-discounted items is higher. This suggests that Northwind customers may be less price-sensitive or that certain core products are frequently bought regardless of promotions.
 
 ### 8. 🤝 Product Affinity (Market Basket Analysis)
@@ -323,4 +329,5 @@ limit 5;
 |Gorgonzola Telino|Mozzarella di Giovanni|6|
 
 **💡 Insight:** 
+
 Scones and Sirop d'érable are frequently paired. This is a perfect opportunity for cross-selling or creating "Bundle Deals" to increase the Average Order Value (AOV).
