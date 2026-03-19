@@ -340,7 +340,7 @@ Through this SQL analysis, we can identified key revenue drivers, seasonal trend
 - **Analytical Tool:** DBeaver
 - **Documentation:** Markdown & GitHub
 
-## 📈 SQL skills Demonstrated
+##  ⚡️SQL Skills Demonstrated
 - JOIN
 - GROUP BY
 - Aggregation (SUM, COUNT)
